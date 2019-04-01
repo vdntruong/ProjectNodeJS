@@ -19,7 +19,7 @@ class socketStream {
 
 	newClient(sk) {
 		console.log('new client connect id:', sk.id);
-		this.sendAll('new-client', sk.id);
+		this.sendToAll('new-client', sk.id);
 	}
 	disconnect(id) {
 		console.log('disconnect with client id:', id);

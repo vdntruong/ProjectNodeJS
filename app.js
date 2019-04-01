@@ -30,6 +30,18 @@ app.use(
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'vendor')));
 
+// var config = require(path.join(__dirname, '/config')).database.mysql;
+// app.use(function(req, res, next) {
+// 	res.locals.connection = mysql.createConnection({
+// 		host: config.host,
+// 		user: config.user,
+// 		password: config.password,
+// 		database: config.database
+// 	});
+// 	res.locals.connection.connect();
+// 	next();
+// });
+
 var api = require('./routes/api');
 app.use('/api', api);
 var web = require('./routes/web');
