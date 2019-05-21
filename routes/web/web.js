@@ -2,7 +2,7 @@ var express = require('express');
 var web = express.Router();
 
 /* moved on user route */
-web.use('/user', require('../routes/user'));
+web.use('/user', require('../user'));
 
 /* GET home page. */
 web.get('/', function(req, res, next) {
