@@ -1,13 +1,13 @@
 var express = require('express');
-var api = express.Router();
+var router = express.Router();
 
 /* GET main API route. */
-api.get('/', function(req, res, next) {
-	res.render('pages/index', { title: 'API Area' });
+router.get('/', function(req, res, next) {
+	res.status(200).json({ message: 'API v1.0 Area' });
 });
 
 var mysql = require('mysql');
-api.get('/yeahs', function(req, res, next) {
+router.get('/yeahs', function(req, res, next) {
 	var conn = mysql.createConnection({
 		host: 'localhost',
 		user: 'root',
@@ -16,8 +16,8 @@ api.get('/yeahs', function(req, res, next) {
 	});
 	conn.query('select * from yeah where ?', req.body, (er, rs) => {
 		if (er) res.json(er);
-		res.json(rs);
+		res.status(200).json(rs);
 	});
 });
 
-module.exports = api;
+module.exports = router;

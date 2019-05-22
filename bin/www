@@ -22,7 +22,7 @@ app.set('port', port);
 var server = http.createServer(app);
 
 /** 
- * Create socket stream.
+ * Create Socket stream.
 */
 
 var io = require('socket.io')(server);
@@ -30,7 +30,7 @@ var socketStream = require('../vendor/appSocket').attachIO(io);
 debugSocket(socketStream);
 
 /**
- * Check socket stream are woking
+ * Check socket stream are working
  */
 
 function debugSocket(s) {

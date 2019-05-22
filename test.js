@@ -1,3 +1,4 @@
+var mysql = require('mysql');
 var conn = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
@@ -44,7 +45,7 @@ class BaseModel {
 		return new Promise((resolve, reject) => {
 			conn.query('select * from ' + this.name, (er, rs, fl) => {
 				if (er) return reject(er);
-				console.log(fl);
+				// console.log(fl);
 				resolve(rs);
 			});
 		});
@@ -60,4 +61,4 @@ class BaseModel {
 }
 class yeah extends BaseModel {}
 
-yeah.getAll().then((data) => console.log('xong', data)).catch((er) => console.log('er', er));
+// yeah.getAll().then((data) => console.log(data)).catch((er) => console.log('er', er));

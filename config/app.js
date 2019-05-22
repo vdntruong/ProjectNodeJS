@@ -1,17 +1,19 @@
 require('dotenv').config();
-var createError = require('http-errors');
-var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var createError = require('http-errors');
+var cookieParser = require('cookie-parser');
+var routeMapping = require('./router');
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
 
+// middlewares setup
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -20,30 +22,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
 	session({
-		secret: process.env.SESSION_SECRET,
+		secret: process.env.SESSION_SECRET || 'something secret',
 		resave: true,
 		saveUninitialized: true,
 		cookie: { secure: false, maxAge: 1000 * 60 * process.env.SESSION_MAXAGE }
 	})
 );
 
+// public folder for client
 app.use(express.static(path.join(__dirname, '../public')));
-app.use(express.static(path.join(__dirname, '../vendor')));
 
-// var config = require(path.join(__dirname, '/config')).database.mysql;
-// app.use(function(req, res, next) {
-// 	res.locals.connection = mysql.createConnection({
-// 		host: config.host,
-// 		user: config.user,
-// 		password: config.password,
-// 		database: config.database
-// 	});
-// 	res.locals.connection.connect();
-// 	next();
-// });
-
-app.use('/', require('../routes/web/web'));
-app.use('/api', require('../routes/api'));
+// routes setup
+routeMapping.mapWeb('./routes/web', app);
+routeMapping.mapApi('./routes/api', app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
