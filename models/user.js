@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../vendor/appDB');
+const Op = Sequelize.Op;
 
 const User = db.define('user', {
 	username: {
@@ -33,6 +34,25 @@ exports.getById = (id) => {
 				User.findByPk(id).then((user) => {
 					if (user == null) return reject(new Error('Error'));
 					resolve(user.dataValues);
+				});
+			})
+			.catch(() => {
+				return reject(new Error('Disconnect'));
+			});
+	});
+};
+exports.getUserAuth = (user) => {
+	return new Promise((resolve, reject) => {
+		db
+			.authenticate()
+			.then(() => {
+				User.findAll({
+					where: {
+						[Op.or]: [ { username: user }, { email: user } ]
+					}
+				}).then((users) => {
+					if (users == null) return reject(new Error('Error'));
+					resolve(users.map((user) => user.dataValues)[0]);
 				});
 			})
 			.catch(() => {

@@ -8,6 +8,7 @@ var session = require('express-session');
 var createError = require('http-errors');
 var cookieParser = require('cookie-parser');
 var routeMapping = require('./router');
+var passport = require('passport');
 var app = express();
 
 // view engine setup
@@ -16,10 +17,12 @@ app.set('view engine', 'ejs');
 
 // middlewares setup
 app.use(logger('dev'));
+// parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+// cookie, session
 app.use(cookieParser());
 app.use(
 	session({
@@ -29,6 +32,9 @@ app.use(
 		cookie: { secure: false, maxAge: 1000 * 60 * process.env.SESSION_MAXAGE }
 	})
 );
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // public folder for client
 app.use(express.static(path.join(__dirname, '../public')));
