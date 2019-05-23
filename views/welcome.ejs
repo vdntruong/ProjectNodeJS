@@ -1,17 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <%- include partials/css -%>
-    <title><%= title %></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<%- include partials/css -%>
+	<title><%= title %></title>
 
 </head>
-<body>
-    <div class="well">
-        <h4>Learning a new framework can be daunting, but it's also exciting. To smooth your transition, we've attempted to create very clear, concise documentation for BigBug. Here are some recommendations for what to read first:</h4>
-    </div>    
+
+<body style="background-color:powderblue;">
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Jumbotron Header -->
+		<header class="jumbotron my-4">
+			<h1 class="display-3">A BigBug Welcome!</h1>
+			<p class="lead">Learning a new framework can be daunting, but it's also exciting. To smooth your transition, we've attempted to create very clear, concise documentation for BigBug. Here are some recommendations for what to read first.</p>
+			<a href="https://github.com/ChipMust/ProjectNodeJS" target="_blank">Go to GitHub Repository</a>
+		</header>
+
+		<!-- Page Features -->
+		<div class="row text-center">
+
+			<div class="col-lg-3 col-md-6 mb-4">
+				<div class="card h-100">
+					<div class="card-body">
+						<h4 class="card-title">Express.js</h4>
+						<p class="card-text">Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-3 col-md-6 mb-4">
+				<div class="card h-100">
+					<div class="card-body">
+						<h4 class="card-title">Socket.io</h4>
+						<p class="card-text">Socket.IO enables real-time, bidirectional and event-based communication. It works on every platform, browser or device, focusing equally on reliability and speed.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-3 col-md-6 mb-4">
+				<div class="card h-100">
+					<div class="card-body">
+						<h4 class="card-title">Sequelizejs</h4>
+						<p class="card-text">Sequelize is a promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite and Microsoft SQL Server. It features solid transaction support, relations, eager and lazy loading, read replication and more.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-3 col-md-6 mb-4">
+				<div class="card h-100">
+					<div class="card-body">
+						<h4 class="card-title">Passportjs</h4>
+						<p class="card-text">Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application.</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="row text-center">
+
+			<div class="col-lg-3 col-md-6 mb-4">
+				<div class="card h-100">
+					<div class="card-footer">
+						<a href="https://expressjs.com/" target="_blank" class="btn btn-primary">Find Out More!</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-3 col-md-6 mb-4">
+				<div class="card h-100">
+					<div class="card-footer">
+						<a href="https://socket.io/" target="_blank" class="btn btn-primary">Find Out More!</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-3 col-md-6 mb-4">
+				<div class="card h-100">
+					<div class="card-footer">
+						<a href="http://docs.sequelizejs.com/" target="_blank" class="btn btn-primary">Find Out More!</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-3 col-md-6 mb-4">
+				<div class="card h-100">
+					<div class="card-footer">
+						<a href="http://www.passportjs.org/" target="_blank" class="btn btn-primary">Find Out More!</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.row -->
+
+	</div>
+	<!-- /.container -->
+
+	<hr>
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyleft <span style="display:inline-block;transform:rotate(180deg);">&copy;</span> BigBug Website 2019</p>
+		</div>
+		<!-- /.container -->
+	</footer>
 
 </body>
+
 </html>
