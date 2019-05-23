@@ -1,3 +1,4 @@
+'use strict';
 class socketStream {
 	constructor(io) {
 		this.io = io;
@@ -7,7 +8,6 @@ class socketStream {
 		if (this.io) return true;
 		else return false;
 	}
-
 	run() {
 		this.io.on('connection', (socket) => {
 			this.newClient(socket);
@@ -37,15 +37,15 @@ class socketStream {
 	sendToId(id, cn, data) {
 		this.io.to(id).emit(cn, data);
 	}
-	sendToRoom(roomName, cn, data) {
-		this.io.sockets.in(roomName).emit(cn, data);
-	}
 
 	joinRoom(sk, roomName) {
 		sk.join(roomName);
 	}
 	outRoom(sk, roomName) {
 		sk.leave(roomName);
+	}
+	sendToRoom(roomName, cn, data) {
+		this.io.sockets.in(roomName).emit(cn, data);
 	}
 
 	/**
@@ -62,7 +62,6 @@ class socketStream {
 		return rs;
 	}
 }
-
 class socketServer {
 	static attachIO(io) {
 		var socket = new socketStream(io);

@@ -1,15 +1,75 @@
-var getConnection = require('../db');
+const Sequelize = require('sequelize');
+const db = require('../vendor/appDB');
 
-class User {
-	getAll() {
-		getConnection((err, con) => {
-			if (err) return err;
-			con.query('select * from yeah', (er, yeahs) => {
-				if (er) return er;
-				return yeahs;
+const User = db.define('user', {
+	username: {
+		type: Sequelize.STRING,
+		allowNull: false
+	},
+	email: { type: Sequelize.STRING },
+	password: { type: Sequelize.STRING }
+});
+
+exports.getAll = () => {
+	return new Promise((resolve, reject) => {
+		db
+			.authenticate()
+			.then(() => {
+				User.findAll().then((users) => {
+					if (users == null) return reject(new Error('Error'));
+					resolve(users.map((user) => user.dataValues));
+				});
+			})
+			.catch(() => {
+				return reject(new Error('Disconnect'));
 			});
-		});
-	}
-}
+	});
+};
+exports.getById = (id) => {
+	return new Promise((resolve, reject) => {
+		db
+			.authenticate()
+			.then(() => {
+				User.findByPk(id).then((user) => {
+					if (user == null) return reject(new Error('Error'));
+					resolve(user.dataValues);
+				});
+			})
+			.catch(() => {
+				return reject(new Error('Disconnect'));
+			});
+	});
+};
 
-module.exports = User;
+// db.sync().then(
+// 	(exports.getAll = () => {
+// 		return new Promise((resolve, reject) => {
+// 			db
+// 				.authenticate()
+// 				.then(() => {
+// 					User.findAll().then((users) => {
+// 						if (users == null) return reject(new Error('Error'));
+// 						resolve(users.map((user) => user.dataValues));
+// 					});
+// 				})
+// 				.catch(() => {
+// 					return reject(new Error('Disconnect'));
+// 				});
+// 		});
+// 	}),
+// 	(exports.getById = (id) => {
+// 		return new Promise((resolve, reject) => {
+// 			db
+// 				.authenticate()
+// 				.then(() => {
+// 					User.findByPk(id).then((user) => {
+// 						if (user == null) return reject(new Error('Error'));
+// 						resolve(user.dataValues);
+// 					});
+// 				})
+// 				.catch(() => {
+// 					return reject(new Error('Disconnect'));
+// 				});
+// 		});
+// 	})
+// );

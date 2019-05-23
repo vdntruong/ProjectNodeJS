@@ -23,7 +23,7 @@ function mapWeb(routePath, app = null) {
 		var filepath = routePath + '/' + file;
 		var stat = fs.statSync(filepath);
 		if (stat.isDirectory()) {
-			mapApi(filepath, app);
+			mapWeb(filepath, app);
 		} else {
 			if (file == 'index.js') {
 				routePath = '.' + routePath;
@@ -33,5 +33,7 @@ function mapWeb(routePath, app = null) {
 	});
 }
 
-module.exports.mapApi = mapApi;
-module.exports.mapWeb = mapWeb;
+module.exports = {
+	mapApi,
+	mapWeb
+};
