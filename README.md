@@ -1,4 +1,4 @@
-<h1 align="center">BigBug Framework</h1>
+<h1 align="center">BigBug Framed</h1>
 
 ## About BigBug
 
