@@ -1,6 +1,6 @@
 'use strict';
-
 const userModel = require('../models/user');
+
 exports.getAll = (req, res) => {
 	userModel
 		.getAll()

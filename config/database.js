@@ -10,12 +10,6 @@ module.exports = {
 			database: process.env.DB_DATABASE || 'test'
 		},
 		{
-			name: 'mongodb',
-			host: process.env.DB_HOST || '127.0.0.1',
-			port: process.env.DB_PORT || '27017',
-			database: process.env.DB_DATABASE || 'test'
-		},
-		{
 			name: 'mssql',
 			host: process.env.DB_HOST || '127.0.0.1',
 			port: process.env.DB_PORT || '1433',

@@ -1,3 +1,4 @@
+'use strict';
 require('dotenv').config();
 var path = require('path');
 var logger = require('morgan');
@@ -38,6 +39,8 @@ app.use(passport.session());
 
 // public folder for client
 app.use(express.static(path.join(__dirname, '../public')));
+app.use('/stylesheets', express.static(path.join(__dirname, '../public/stylesheets')));
+app.use('/javascripts', express.static(path.join(__dirname, '../public/javascripts')));
 
 // routes setup
 routeMapping.mapWeb('./routes/web', app);

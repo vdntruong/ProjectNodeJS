@@ -1,5 +1,4 @@
 'use strict';
-
 const userModel = require('../models/user');
 
 exports.authUserPass = (user, pass) => {

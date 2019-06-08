@@ -1,10 +1,11 @@
+'use strict';
 var fs = require('fs');
 
-function mapApi(routePath, app = null, currentLevel = 0, maxLevel = 1) {
+const mapApi = (routePath, app = null, currentLevel = 0, maxLevel = 1) => {
 	if (currentLevel > maxLevel) {
 		return;
 	} else {
-		fs.readdirSync(routePath).forEach(function(file) {
+		fs.readdirSync(routePath).forEach((file) => {
 			var filepath = routePath + '/' + file;
 			var stat = fs.statSync(filepath);
 			if (stat.isDirectory()) {
@@ -17,9 +18,9 @@ function mapApi(routePath, app = null, currentLevel = 0, maxLevel = 1) {
 			}
 		});
 	}
-}
-function mapWeb(routePath, app = null) {
-	fs.readdirSync(routePath).forEach(function(file) {
+};
+const mapWeb = (routePath, app = null) => {
+	fs.readdirSync(routePath).forEach((file) => {
 		var filepath = routePath + '/' + file;
 		var stat = fs.statSync(filepath);
 		if (stat.isDirectory()) {
@@ -31,7 +32,7 @@ function mapWeb(routePath, app = null) {
 			}
 		}
 	});
-}
+};
 
 module.exports = {
 	mapApi,
